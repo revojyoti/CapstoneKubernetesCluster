@@ -12,7 +12,7 @@ pipeline {
 
 stage('Deploying KUbernetes Cluster') {
 			steps {
-				withAWS(region:'us-west-2', credentials:'') {
+				withAWS(region:'us-west-2', credentials:'EKSUSER') {
 					sh '''
 						eksctl create cluster \
 						--name CapstoneKubeCluster \
@@ -31,7 +31,7 @@ stage('Deploying KUbernetes Cluster') {
 
 stage('Update teh Cluster KubeConfig file') {
 			steps {
-				withAWS(region:'us-west-2', credentials:'') {
+				withAWS(region:'us-west-2', credentials:'EKSUSER') {
 					sh '''
 						aws eks --region us-west-2 update-kubeconfig --name CapstoneKubeClluster
 					'''
