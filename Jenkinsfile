@@ -15,7 +15,7 @@ stage('Deploying KUbernetes Cluster') {
 				withAWS(region:'us-west-2', credentials:'TestID') {
 					sh '''
 						eksctl create cluster \
-						--name CapKubeClusterMst \
+						--name CapKubeClust \
 						--version 1.14 \
 						--region us-west-2 \
 						--nodegroup-name Ec2Nodes \
@@ -33,7 +33,7 @@ stage('Update teh Cluster KubeConfig file') {
 			steps {
 				withAWS(region:'us-west-2', credentials:'TestID') {
 					sh '''
-						aws eks --region us-west-2 update-kubeconfig --name CapKubeClusterMst
+						aws eks --region us-west-2 update-kubeconfig --name CapKubeClust
 					'''
 				}
 			}
